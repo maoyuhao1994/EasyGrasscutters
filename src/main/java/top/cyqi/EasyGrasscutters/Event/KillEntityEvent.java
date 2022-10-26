@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class KillEntityEvent implements EventConsumer<EntityDeathEvent> {
 
-    //¼àÌıÊµÌå±í
+    //ç›‘å¬å®ä½“è¡¨
     public static Map<String, KillEntity> All_Entity = new HashMap<>();
 
 
@@ -20,19 +20,19 @@ public class KillEntityEvent implements EventConsumer<EntityDeathEvent> {
 
 
         for (String key : All_Entity.keySet()) {
-            //»ñÈ¡µ±Ç°ÊµÌå¼à²â¶ÔÏó
+            //è·å–å½“å‰å®ä½“ç›‘æµ‹å¯¹è±¡
             KillEntity Entity = All_Entity.get(key);
 
-            //»ñÈ¡ËÀÍöÊµÌåµÄIDºÍÉ±ËÀ¸ÃÊµÌåµÄID
+            //è·å–æ­»äº¡å®ä½“çš„IDå’Œæ€æ­»è¯¥å®ä½“çš„ID
             int killed_id = 0;
             if (entityDeathEvent.getKiller() != null) {
                 killed_id = entityDeathEvent.getKiller().getId();
             }
             int death_id = entityDeathEvent.getEntity().getId();
 
-            // µ÷ÓÃÊµÌå¼à²â
+            // è°ƒç”¨å®ä½“ç›‘æµ‹
             if (Entity.check(death_id, killed_id)) {
-                //·ûºÏÊµÌå£¬µ÷ÓÃÉ¾³ı
+                //ç¬¦åˆå®ä½“ï¼Œè°ƒç”¨åˆ é™¤
                 All_Entity.remove(key);
             }
         }
@@ -48,8 +48,8 @@ public class KillEntityEvent implements EventConsumer<EntityDeathEvent> {
         }
     }
 
-    public static void add_killEntity(KillEntity killEntity) {
-        String uuid = UUID.randomUUID().toString();
+    public static void add_killEntity(KillEntity killEntity,EntityDeathEvent entityDeathEvent) {
+        String uuid = entityDeathEvent.getKiller().getId();;
         All_Entity.put(uuid, killEntity);
     }
 
