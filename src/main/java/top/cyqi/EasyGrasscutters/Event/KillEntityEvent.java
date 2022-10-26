@@ -49,7 +49,7 @@ public class KillEntityEvent implements EventConsumer<EntityDeathEvent> {
     }
 
     public static void add_killEntity(KillEntity killEntity,EntityDeathEvent entityDeathEvent) {
-        String uuid = entityDeathEvent.getKiller().getId();;
+        String uuid = entityDeathEvent.getKiller().getId();
         All_Entity.put(uuid, killEntity);
     }
 
